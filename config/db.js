@@ -6,6 +6,7 @@ const connectDB = async () => {
   try {
     // By default is set to 'false' but we need 'true'
     mongoose.set("strictQuery", true);
+    mongoose.set("strictPopulate", false);
     await mongoose.connect(db);
     console.log("DB connected...");
   } catch (error) {
