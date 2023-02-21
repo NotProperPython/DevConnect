@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const Login = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,7 +17,7 @@ export const Login = () => {
     console.log(formData);
   };
   return (
-    <div className="container">
+    <>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Sign into Your Account
@@ -47,6 +48,8 @@ export const Login = () => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
-    </div>
+    </>
   );
 };
+
+export default connect(null, {})(Login);

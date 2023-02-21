@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { REMOVE_ALERT, SET_ALERT } from "../actions/types";
 
-const initialState = [{}];
+const initialState = [];
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
