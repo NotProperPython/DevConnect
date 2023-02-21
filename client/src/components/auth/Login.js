@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../actions/auth";
+import PropTypes from "prop-types";
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,15 +17,22 @@ const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    login({ email, password });
   };
+  useEffect(() => {
+    //Redirect if logged in
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
+
   return (
     <>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Sign into Your Account
       </p>
-      <form className="form" action="dashboard.html">
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
             type="email"
@@ -30,7 +40,6 @@ const Login = () => {
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -40,7 +49,6 @@ const Login = () => {
             name="password"
             value={password}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Login" />
@@ -52,4 +60,13 @@ const Login = () => {
   );
 };
 
-export default connect(null, {})(Login);
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

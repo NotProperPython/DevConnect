@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,9 +27,16 @@ const Register = ({ setAlert }) => {
       setAlert("Passwords do not match", "danger");
       console.log("Passwords do not match");
     } else {
-      console.log("Success");
+      register({ name, email, password });
     }
   };
+
+  useEffect(() => {
+    //Redirect if logged in
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, []);
   return (
     <>
       <h1 className="large text-primary">Sign Up</h1>
@@ -41,7 +51,6 @@ const Register = ({ setAlert }) => {
             name="name"
             value={name}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -51,7 +60,6 @@ const Register = ({ setAlert }) => {
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
-            required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -65,7 +73,6 @@ const Register = ({ setAlert }) => {
             name="password"
             value={password}
             onChange={(e) => onChange(e)}
-            minLength="6"
           />
         </div>
         <div className="form-group">
@@ -75,7 +82,6 @@ const Register = ({ setAlert }) => {
             name="password2"
             value={password2}
             onChange={(e) => onChange(e)}
-            minLength="6"
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -87,6 +93,12 @@ const Register = ({ setAlert }) => {
   );
 };
 
-Register.propTypes = { setAlert: PropTypes.func.isRequired };
-
-export default connect(null, { setAlert })(Register);
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { setAlert, register })(Register);
