@@ -37,6 +37,7 @@ export default (state = initialState, { type, payload }) => {
         token: null,
         isAuthenticated: false,
         loading: false,
+        user: null,
       };
     case USER_LOADED:
       return { ...state, isAuthenticated: true, loading: false, user: payload };

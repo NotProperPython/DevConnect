@@ -11,6 +11,8 @@ import Alert from "./components/layout/Alert";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import { useEffect } from "react";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoutes from "./components/routing/PrivateRoutes";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,6 +32,9 @@ const App = () => {
         <section className="container">
           <Alert />
           <Routes>
+            <Route element={<PrivateRoutes />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Routes>

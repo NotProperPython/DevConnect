@@ -11,6 +11,7 @@ const Landing = () => {
             Create a developer profile/portfolio, share posts and get help from
             other developers
           </p>
+          {/* TODO: Only show these button when not authorized */}
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">
               Sign Up
@@ -25,4 +26,5 @@ const Landing = () => {
   );
 };
 
+// TODO: connect this page to state
 export default Landing;
