@@ -49,6 +49,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             type="text"
             placeholder="Name"
             name="name"
+            autoComplete="off"
             value={name}
             onChange={(e) => onChange(e)}
           />
@@ -58,6 +59,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             type="email"
             placeholder="Email Address"
             name="email"
+            autoComplete="off"
             value={email}
             onChange={(e) => onChange(e)}
           />

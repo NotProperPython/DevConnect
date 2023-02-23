@@ -38,6 +38,8 @@ const Login = ({ login, isAuthenticated }) => {
             type="email"
             placeholder="Email Address"
             name="email"
+            autoComplete="off"
+            data-lpignore="true"
             value={email}
             onChange={(e) => onChange(e)}
           />
@@ -47,6 +49,7 @@ const Login = ({ login, isAuthenticated }) => {
             type="password"
             placeholder="Password"
             name="password"
+            autoComplete="off"
             value={password}
             onChange={(e) => onChange(e)}
           />
