@@ -11,7 +11,7 @@ const EditProfile = ({
   getCurrentProfile,
 }) => {
   const navigate = useNavigate();
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     company: "",
     website: "",
     location: "",
@@ -44,7 +44,7 @@ const EditProfile = ({
 
   useEffect(() => {
     getCurrentProfile();
-    setformData({
+    setFormData({
       company: loading || !profile.company ? "" : profile.company,
       website: loading || !profile.website ? "" : profile.website,
       location: loading || !profile.location ? "" : profile.location,
@@ -65,7 +65,7 @@ const EditProfile = ({
   }, [loading]);
 
   const onChange = (e) => {
-    setformData({
+    setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
