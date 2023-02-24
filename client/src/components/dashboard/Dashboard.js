@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
+import DashboardActions from "./DashboardActions";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -25,7 +26,7 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <>
-          <h2>Your Profile is Here</h2>{" "}
+          <DashboardActions />
         </>
       ) : (
         <>
