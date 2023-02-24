@@ -9,7 +9,7 @@ A place for devs to express their thoughts
 
 ### Prerequisites
 
-Before running this application you will need to add a file named `default.json` with the JSON content below.
+Before running this application you will need to add a file inside `/config` folder and name it `default.json` with the JSON content below.
 
 ```json
 {
