@@ -95,7 +95,7 @@ const AddEducation = ({ addEducation }) => {
                 setToDateDisabled(!toDateDisabled);
               }}
             />{" "}
-            Current Job
+            Current School
           </p>
         </div>
         <div className="form-group">
