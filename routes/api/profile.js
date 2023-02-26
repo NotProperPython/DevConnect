@@ -16,7 +16,7 @@ router.get("/me", auth, async (req, res) => {
   try {
     // Get currently logged-in user's profile
     const profile = await Profile.findOne({ user: req.user.id }).populate(
-      "users",
+      "user",
       ["name", "avatar"]
     );
 
@@ -122,7 +122,7 @@ router.post(
 router.get("/", async (req, res) => {
   try {
     // Fetch all profiles + add user field with all User details to it as well
-    const profiles = await Profile.find().populate("users", ["name", "avatar"]);
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
     // Return all profiles
     res.json(profiles);
   } catch (err) {
@@ -138,7 +138,7 @@ router.get("/user/:userId", async (req, res) => {
   try {
     // Fetch profile by using the userId from URL
     const profile = await Profile.findOne({ user: req.params.userId }).populate(
-      "users",
+      "user",
       ["name", "avatar"]
     );
 
