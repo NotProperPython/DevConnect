@@ -14,7 +14,7 @@ import setAuthToken from "../utils/setAuthToken";
 
 //Register User
 export const register =
-  ({ name, email, password }) =>
+  ({ name, email, password, navigate }) =>
   async (dispatch) => {
     const config = {
       headers: {
@@ -29,6 +29,7 @@ export const register =
         payload: res.data,
       });
       dispatch(loadUser());
+      navigate("/dashboard");
     } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {

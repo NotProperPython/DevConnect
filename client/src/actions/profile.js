@@ -10,7 +10,6 @@ import {
   GET_PROFILES,
   GET_REPOS,
 } from "./types";
-import { set } from "mongoose";
 
 //Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
