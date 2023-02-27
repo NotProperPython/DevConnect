@@ -19,6 +19,7 @@
     line-height: 1.6;
     background-color: #fff;
     color: #333;
+    padding-top: 0.7rem;
   }
   
   a {
@@ -227,7 +228,7 @@
   /* Overlay */
   .dark-overlay {
     background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -335,6 +336,8 @@
     position: relative;
     background: url('./img/showcase.jpg') no-repeat center center/cover;
     height: 100vh;
+    margin-top: -10px;
+    margin-bottom: -90px;
   }
   
   .landing-inner {
